@@ -1,5 +1,5 @@
-env:
-	python3 -m venv .venv
+install:
+	python3 -m venv .venv && pip3 install -r requirements.txt
 
 activate:
 	echo "source .venv/bin/activate" && echo ". Please copy the line to active the env"
@@ -7,5 +7,9 @@ activate:
 install:
 	pip3 install -r requirements.txt
 
-run:
+app-run:
 	streamlit run app.py
+
+run:
+	python3 main.py
+
