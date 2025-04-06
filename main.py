@@ -2,12 +2,59 @@ import numpy as np
 from libs.configs import cfg
 from libs.data import create_train_dataloader
 from libs.utils import logger
+from libs.configs import cfg, setup_config
+import os
+import shutil
+import torch
+from libs.utils.comm import  synchronize
+import argparse
+
+def get_exist_path(path):
+    os.makedirs(path,exist_ok=True)
+    return path
+
+
+def init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cfg", type=str, default='semv3')
+    parser.add_argument("--work_dir", type=str, default=None)
+    parser.add_argument("--local_rank", type=int, default=0)
+    parser.add_argument("--version_name",type=str, default="v1")
+    args = parser.parse_args()
+
+    setup_config(args.cfg)
+    if args.work_dir is not None:
+        cfg.work_dir = args.work_dir+"_"+cfg.tips
+
+    # dst_path = os.path.join( cfg.work_dir, args.cfg+".py" )
+    # if not os.path.isfile(dst_path):
+    #     src_path = os.path.join(f"./libs/configs",args.cfg+".py")
+    #     shutil.copyfile(src_path, dst_path)
+
+    os.environ['LOCAL_RANK'] = str(args.local_rank)
+    num_gpus = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
+    distributed = num_gpus > 1
+
+    if distributed:
+        torch.cuda.set_device(args.local_rank)
+        torch.distributed.init_process_group(
+            backend="nccl", init_method="env://"
+        )
+        synchronize()
+
+    logger.setup_logger('Line Detect Model', cfg.work_dir, 'train.log')
+    logger.info('Use config: %s' % args.cfg)
+    logger.info('Args: %s' % args)
 
 def main():
-    # init()
+    init()
 
     np.random.seed(0)
-    # scale_bucket =  0.8 + (1.2-0.8)*np.random.random((cfg.num_epochs,1000))
+    scale_bucket =  0.8 + (1.2-0.8)*np.random.random((cfg.num_epochs,1000))
+    print('cfg.train_lrcs_path=', cfg.train_lrcs_path)
+    print('cfg.train_num_workers=', cfg.train_num_workers)
+    print('cfg.train_max_batch_size=', cfg.train_max_batch_size)
+
 
     train_dataloader = create_train_dataloader(
         cfg.train_lrcs_path,

@@ -5,9 +5,10 @@ device = torch.device('cuda')
 model_name = "Model_points_delta_conv_2_new_merger_v1" #
 tips = model_name
 # train dataset
-train_lrcs_path = [
-    "/train20/intern/permanent/zrzhang6/qcxia/TSR/Dataset/companydataset/output_dir/extract_available/train/train_v5.lrc"
-]
+# train_lrcs_path = [
+#     "/train20/intern/permanent/zrzhang6/qcxia/TSR/Dataset/companydataset/output_dir/extract_available/train/train_v5.lrc"
+# ]
+train_lrcs_path = []
 
 # 12g
 train_max_pixel_nums = 4000 * 4000
@@ -22,7 +23,8 @@ min_img_size = 64
 train_rota=False
 
 # valid dataset
-valid_lrc_path = ["/train20/intern/permanent/zrzhang6/qcxia/TSR/Dataset/companydataset/output_dir/extract_available/valid/valid_with_line_v5.lrc"]
+# valid_lrc_path = ["/train20/intern/permanent/zrzhang6/qcxia/TSR/Dataset/companydataset/output_dir/extract_available/valid/valid_with_line_v5.lrc"]
+valid_lrc_path = [""]
 
 valid_num_workers = 0
 valid_batch_size = 1
@@ -64,8 +66,8 @@ row_split_head=dict(
         channel=256,
         spatial_kernel=5
     ),
-    feature_branch_kernelSzie=1, 
-    kernel_branch_kernelSize=1, 
+    feature_branch_kernelSzie=1,
+    kernel_branch_kernelSize=1,
     feature_branch_act=dict(type='ReLU'),
     in_channels=256,
     loss=dict(
@@ -86,8 +88,8 @@ col_split_head=dict(
         channel=256,
         spatial_kernel=5
     ),
-    feature_branch_kernelSzie=1, 
-    kernel_branch_kernelSize=1, 
+    feature_branch_kernelSzie=1,
+    kernel_branch_kernelSize=1,
     feature_branch_act=dict(type='ReLU'),
     in_channels=256,
     loss=dict(
@@ -134,10 +136,10 @@ sync_rate = 20
 log_sep = 100
 
 config_name = os.path.basename(__file__).split('.')[0]
-work_dir = f'/train20/intern/permanent/cxqin/TSR/code/semv3_open_source/experiments/debug/{config_name}'+"_"+tips
+work_dir = './'
 valid_vis_path = None
 train_checkpoint = None
 resume_path = None
-eval_checkpoint = "/train20/intern/permanent/zrzhang6/qcxia/TSR/code/SEMv3/experiments/v1/config_IFLYTAB_delta_conv_2_new_merger_v1_bbox/2023_12_19_10_13_Model_points_delta_conv_2_new_merger_v1/best_cell_iou_f1_model.pth"
-infer_checkpoint = "/train20/intern/permanent/zrzhang6/qcxia/TSR/code/SEMv3/experiments/v1/config_IFLYTAB_delta_conv_2_new_merger_v1_bbox/2023_12_19_10_13_Model_points_delta_conv_2_new_merger_v1/best_cell_iou_f1_model.pth"
+# eval_checkpoint = "/train20/intern/permanent/zrzhang6/qcxia/TSR/code/SEMv3/experiments/v1/config_IFLYTAB_delta_conv_2_new_merger_v1_bbox/2023_12_19_10_13_Model_points_delta_conv_2_new_merger_v1/best_cell_iou_f1_model.pth"
+# infer_checkpoint = "/train20/intern/permanent/zrzhang6/qcxia/TSR/code/SEMv3/experiments/v1/config_IFLYTAB_delta_conv_2_new_merger_v1_bbox/2023_12_19_10_13_Model_points_delta_conv_2_new_merger_v1/best_cell_iou_f1_model.pth"
 

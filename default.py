@@ -22,9 +22,6 @@ valid_batch_size = 1
 valid_max_row_nums = 20
 valid_max_col_nums = 20
 
-train_max_row_nums = 20
-train_max_col_nums = 20
-
 
 # model params
 # backbone

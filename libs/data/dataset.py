@@ -1,7 +1,7 @@
 import cv2
 import torch
 import numpy as np
-from .list_record_cache import ListRecordLoader
+from .record_loader import ListRecordLoader
 
 
 class LRCRecordLoader:
