@@ -12,3 +12,6 @@ trans2lrc-train:
 
 trans2lrc-test:
 	python3 dataset/trans2lrc.py dataset/SciTSR/test dataset/SciTSR_lrc/test -n 10
+
+download-data:
+	./data_download_scipt.sh
