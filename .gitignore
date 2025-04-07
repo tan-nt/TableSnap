@@ -153,7 +153,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-docs/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -165,3 +164,6 @@ docs/
 assets/data/
 
 .venv/
+
+SciTSR/
+SciTSR_lrc/

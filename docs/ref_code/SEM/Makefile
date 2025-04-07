@@ -1,0 +1,14 @@
+run:
+	python runner/train.py --cfg default
+
+install-env:
+	python3 -m venv .venv && source .venv/bin/activate && pip3 install -r requirements.txt
+
+install:
+	pip3 install -r requirements.txt
+
+trans2lrc-train:
+	python3 dataset/trans2lrc.py dataset/SciTSR/train dataset/SciTSR_lrc/train -n 10
+
+trans2lrc-test:
+	python3 dataset/trans2lrc.py dataset/SciTSR/test dataset/SciTSR_lrc/test -n 10
