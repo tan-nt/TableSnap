@@ -167,3 +167,6 @@ assets/data/
 
 SciTSR/
 SciTSR_lrc/
+.DS_Store
+ref_code/SEM/dataset/__MACOSX/._SciTSR
+ref_code/SEM/dataset/__MACOSX/._SciTSR_lrc
